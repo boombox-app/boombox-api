@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="player">
 <head>
   <meta charset="UTF-8">
   <title>Player</title>
@@ -7,6 +7,12 @@
   <script src="assets/js/app.js"></script>
 </head>
 <body>
-  <h1>Player</h1>
+  <main class="main">
+    <aside data-ng-include="'partials/sidebar.html'"></aside>
+    <div class="container">
+      <ui-view></ui-view>
+    </div>
+    <player-control></player-control>
+  </main>
 </body>
 </html>
