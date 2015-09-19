@@ -1,5 +1,7 @@
 (function () {
 
+  var bulk = require('bulk-require');
+
   require('angular');
   require('ui-router');
 
@@ -8,12 +10,12 @@
     'ui.router'
   ]);
 
-  //Modules
-  require('./app.routes');
+  require(bulk(__dirname, [
+    'app.routes.js',
+    '**/*.service.js',
+    '**/*.controller.js',
+    '**/*.directive.js'
+    ])
+  );
 
-  //Controllers
-  require('./controllers/player.controller.js');
-
-  //Directives
-  require('./directives/player.directive.js');
 })();
