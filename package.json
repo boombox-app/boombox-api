@@ -17,6 +17,7 @@
     "browser-sync": "^2.8.2",
     "browser-sync-spa": "^1.0.2",
     "browserify": "^11.0.1",
+    "bulkify": "^1.1.1",
     "chai": "^3.2.0",
     "gulp": "^3.9.0",
     "gulp-clean": "^0.3.1",
