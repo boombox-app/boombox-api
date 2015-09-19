@@ -1,7 +1,8 @@
 var gulp = require('gulp'),
     browserify = require('browserify'),
-    browserSync = require('browser-sync').create(),
+    browsersync = require('browser-sync'),
     source = require('vinyl-source-stream'),
+    bulkify = require('bulkify'),
     uglify = require('gulp-uglify'),
     babelify = require('babelify');
 
@@ -10,12 +11,13 @@ var config = require('../config').scripts;
 gulp.task('scripts', ['browserify']);
 
 gulp.task('browserify', function () {
-  return browserify(config.src, { debug: true })
+  return browserify(config.src, { debug: true})
   .transform(babelify)
+  .transform(bulkify)
   .bundle()
   .pipe(source(config.fileName))
   .pipe(gulp.dest(config.dest))
-  .pipe(browserSync.reload({ stream: true }));
+  .pipe(browsersync.reload({ stream: true }));
 });
 
 // gulp.task('minify', function () {

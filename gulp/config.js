@@ -4,10 +4,8 @@ var views = './public/views';
 
 module.exports = {
   browsersync : {
-    server: {
-      baseDir: [dest, src]
-    },
-    port           : 3000,
+    proxy: "http://localhost:3000",
+    port           : 8080,
     reloadDelay    : 777,
     reloadDebounce : 333,
     index          : dest + 'index.html',
@@ -21,12 +19,7 @@ module.exports = {
       forms    : true,
       scroll   : true
     },
-    files: [
-      src + '/sass/**/*.{sass,scss}',
-      src + '/**/*.js',
-      src + '/img/**',
-      views + '/**/*.html'
-    ]
+    files: [ src + '/**/*.*', views + '/**/*.*' ]
   },
   nodemon: {
     server : './app/index.js',

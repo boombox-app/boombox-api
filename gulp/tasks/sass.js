@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
+    browsersync = require('browser-sync'),
     concat = require('gulp-concat');
 
 var config = require('../config').sass;
@@ -10,5 +11,6 @@ gulp.task('sass', function () {
   .pipe(sass({outputStyle: 'compressed'}))
   .on('error', sass.logError)
   .pipe(concat('main.css'))
-  .pipe(gulp.dest(config.dest));
+  .pipe(gulp.dest(config.dest))
+  .pipe(browsersync.reload({ stream: true }));
 });

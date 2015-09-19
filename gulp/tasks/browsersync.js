@@ -4,10 +4,10 @@ var gulp = require('gulp'),
 
 var config = require('../config').browsersync;
 
-gulp.task('browsersync', ['build'], function() {
+gulp.task('browsersync', ['server'], function() {
   browsersync.use(browsersyncspa({
     selector: '[ng-app]' // Only needed for angular apps
   }));
 
-  browsersync(config);
+  browsersync.init(config);
 });
