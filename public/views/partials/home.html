@@ -1,7 +1,7 @@
 <div class="music-box" ng-repeat="song in vm.songs">
   <figure class="thumbnail">
     <a href="#" class="song-link">
-      <img src="http://lorempixel.com/300/300" alt="">
+      <img ng-src="{{song.coverArt}}" alt="">
       <span class="overlay"></span>
     </a>
     <div class="controls">
@@ -17,7 +17,7 @@
     </div>
   </figure>
   <div class="metadata">
-    <div class="music">Song {{$index}}</div>
-    <div class="artist">by Artist</div>
+    <div class="music">{{song.name}}</div>
+    <div class="artist">by {{song.artist}}</div>
   </div>
 </div>
