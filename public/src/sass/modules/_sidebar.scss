@@ -13,6 +13,8 @@
   border-right: 1px solid $light-gray;
   transition: all 200ms linear;
 
+  display: none;
+
   &.is-open{
     width: 250px;
   }

@@ -1,7 +1,22 @@
 .music-box{
-  width: 16.66%;
   padding: 5px 5px 20px;
   float: left;
+
+  @include viewport(lg) {
+    width: 20%;
+  }
+
+  @include viewport(md) {
+    width: 25%;
+  }
+
+  @include viewport(sm) {
+    width: 33.33%;
+  }
+
+  @include viewport(xs) {
+    width: 50%;
+  }
 
   figure{
     margin: 0;
@@ -32,29 +47,26 @@
       position: absolute;
       width: 100%;
       height: 48px;
-      bottom: 40px;
+      bottom: 20%;
       text-align: center;
       opacity: 0;
       transition: opacity 200ms linear;
 
       .control{
-        width: 48px;
-        height: 48px;
         display: inline-block;
+        padding: 10px;
+        border: 1px solid white;
+        border-radius: 50%;
         color: white;
-        font-size: 1.6em;
         cursor: pointer;
+
+        &:hover{
+          background-color: rgba(255,255,255,.45);
+        }
       }
 
       .play-button{
-        font-size: 2em;
-      }
-    }
-
-    .metadata{
-      .music{
-        font-weight: bold;
-        color: $light-gray;
+        font-size: 1.6em;
       }
     }
 
@@ -66,6 +78,17 @@
       .controls {
         opacity: 1;
       }
+    }
+  }
+
+  .metadata{
+    .music{
+      font-weight: bold;
+    }
+
+    .artist{
+      color: #999;
+      font-size: .8em;
     }
   }
 }
