@@ -15,8 +15,23 @@
       return;
     }
 
-    // Ctrl + ← -> Next Track
+    // Ctrl + ← -> Previous Track
     function prev () {
+      return;
+    }
+
+    // Ctrl + ↑ or ↓ -> Change the Volume of song
+    function volume () {
+      return;
+    }
+
+    // → -> Advanced 15 seconds in the track
+    function seekNext () {
+      return;
+    }
+
+    // Ctrl + ← -> Back 15 seconds in the track
+    function seekPrev () {
       return;
     }
 

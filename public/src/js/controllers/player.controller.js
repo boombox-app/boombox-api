@@ -2,7 +2,9 @@
   angular.module('player')
     .controller('PlayerController', PlayerController);
 
-  function PlayerController () {
+  PlayerController.$inject = ['PlayerService'];
+
+  function PlayerController (PlayerService) {
     console.log("Player");
   }
 
