@@ -6,13 +6,7 @@ var port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + '/../_build'));
 
-app.get('/api', function (req, res) {
-  res.json({message: 'API Working', status: 'success'});
-});
-
-app.get('/', function (req, res) {
-  res.sendfile('./_build/index.html');
-});
+app.use('/', require('./routes'));
 
 app.listen(port);
 
