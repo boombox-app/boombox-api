@@ -52,7 +52,8 @@
     vm.songs.push({
       name : 'Crystallize',
       artist : 'Lindsey Stirling',
-      coverArt : 'https://upload.wikimedia.org/wikipedia/pt/5/52/Lindsey_Stirling_-_Lindsey_Stirling.jpg'
+      coverArt : 'https://upload.wikimedia.org/wikipedia/pt/5/52/Lindsey_Stirling_-_Lindsey_Stirling.jpg',
+      status: 'playing'
     });
 
     vm.songs.push({

@@ -2,47 +2,163 @@
   position: fixed;
   z-index: 2;
   width: 100%;
-  height: 60px;
-  bottom: -60px;
-  background-color: #777;
+  height: 70px;
+  bottom: -70px;
+  background-color: #333;
+  background: rgba(0,0,0,.8);
   transition: all 200ms linear;
 
   &.is-playing{
     bottom: 0;
   }
 
-  .controls{
+  .player-container{
     position: relative;
-    width: 200px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .track-info{
+    position: absolute;
+    width: 40%;
+    height: 70px;
+    top: 0;
+    left: 0;
+
+    @include viewport(xs) { display: none; }
+    @include viewport(sm) { display: none; }
+
+    .thumbnail{
+      width: 70px;
+      height: 100%;
+      float: left;
+      margin-right: 15px;
+    }
+
+    img{
+      max-width: 100%;
+    }
+
+    .metadata{
+      margin-top: 5px;
+      font-size: 0.8rem;
+      color: white;
+
+      p{
+        margin: 0;
+      }
+
+      .artist{
+        color: $light-gray;
+        font-size: 0.6rem;
+        margin: 5px 0;
+      }
+
+      .timer{
+        color: $light-gray;
+
+        .now{
+          color: white;
+        }
+      }
+    }
+  }
+
+  .controls{
+    position: absolute;
+    width: 160px;
     height: 40px;
-    margin-top: 10px;
-    margin-left: 10px;
+    top: 15px;
+    left: 50%;
+    margin-left: -80px;
 
     .control{
+      float: left;
+      display: inline-block;
       width: 30px;
       height: 30px;
-      display: inline-block;
-      margin: 5px 5px 0;
-      float: left;
+      margin: 5px 10px 0;
       line-height: 30px;
       color: white;
+      opacity: 0.8;
+      overflow: hidden;
+      outline: 0;
       text-align: center;
       cursor: pointer;
+
+      &:hover{
+        opacity: 1;
+      }
+
     }
 
     .play-btn{
-      font-size: 1.6em;
       width: 40px;
       height: 40px;
       margin-top: 0;
-      line-height: 40px;
+      line-height: 38px;
+      border: 1px solid white;
+      border-radius: 50%;
+
+      &:active{
+        background-color: white;
+        color: black;
+      }
     }
   }
 
   .seek-control{
+    position: relative;
     width: 100%;
-    height: 3px;
-    background-color: red;
-    margin: -50px auto 0;
+    height: 5px;
+    top: -5px;
+    background-color: #eee;
+    transition: all 200ms linear;
+
+    &:hover{
+      .progress-percent:after{
+        display: block;
+      }
+    }
+
+    .progress-bar{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      cursor: pointer;
+      background-color: #2dc1bc;
+      background: linear-gradient(to right, #2dc1bc, #1999b2);
+    }
+
+    .progress-percent{
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      transform: translateX(20%);
+
+      &:after{
+        content: '';
+        position: absolute;
+        display: block;
+        top: -5px;
+        left: -8px;
+        width: 16px;
+        height: 16px;
+        background-color: white;
+        border-radius: 50%;
+      }
+    }
+
+    .buffer{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      background-color: #ddd;
+      transform: translateX(50%);
+    }
   }
 }

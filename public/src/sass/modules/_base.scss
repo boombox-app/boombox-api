@@ -7,19 +7,6 @@
 
 html {
   height: 100%;
-
-  @include viewport(lg){
-    border-top: 3px solid blue;
-  }
-  @include viewport(md){
-    border-top: 3px solid green;
-  }
-  @include viewport(sm){
-    border-top: 3px solid orange;
-  }
-  @include viewport(xs){
-    border-top: 3px solid red;
-  }
 }
 
 body {
@@ -34,7 +21,6 @@ body {
 .main{
   height: 100%;
   overflow: hidden;
-  background-color: white;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -44,24 +30,46 @@ body {
   height: 60px;
   top: 0;
   left: 0;
-  background-color: white;
-  border-bottom: 1px solid $light-gray;
+  background-color: #eee;
   z-index: 1;
 
   h1{
-    text-transform: uppercase;
+    float: left;
     margin: 10px 10px;
+    text-transform: uppercase;
+  }
+
+  .menu{
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-left: 58px;
+    line-height: 58px;
+    text-align: center;
+    border-left: 1px solid $light-gray;
+    color: $light-gray;
+    cursor: pointer;
+
+    &:hover{
+      color: black;
+    }
   }
 }
 
 .container{
-    box-sizing: content-box;
-    outline: 0;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    bottom: 60px;
-    background-color: #fff;
-    -webkit-overflow-scrolling: touch;
-    overflow: auto;
+  box-sizing: content-box;
+  outline: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 60px 0 70px;
+  -webkit-overflow-scrolling: touch;
+  transition: all 300ms linear;
+  background-color: #222;
+  background: linear-gradient(to bottom, #505050, #222);
+  overflow: auto;
+
+  .sidebar-open &{
+    transform: translateX(250px);
+  }
 }

@@ -1,15 +1,18 @@
 <div class="music-box" ng-repeat="song in vm.songs">
-  <figure class="thumbnail">
+  <figure class="thumbnail" ng-class="{'is-playing' : song.status === 'playing'}">
     <a href="#" class="song-link">
       <img ng-src="{{song.coverArt}}" alt="">
       <span class="overlay"></span>
+      <!-- 'is-paused' : song.status == 'paused' -->
     </a>
     <div class="controls">
       <span class="control favorite">
-        <i class="fa fa-heart"></i>
+        <!-- <i class="fa fa-heart"></i> -->
+        <i class="fa fa-heart-o"></i>
       </span>
       <span class="control play-button">
-        <i class="fa fa-play"></i>
+        <i class="fa fa-play" ng-if="song.status !== 'playing'"></i>
+        <i class="fa fa-pause" ng-if="song.status === 'playing'"></i>
       </span>
       <span class="control share">
         <i class="fa fa-share"></i>
@@ -17,7 +20,7 @@
     </div>
   </figure>
   <div class="metadata">
-    <div class="music">{{song.name}}</div>
-    <div class="artist">by {{song.artist}}</div>
+    <span class="music"><strong>{{song.name}}</strong></span>
+    <span class="artist">by {{song.artist}}</span>
   </div>
 </div>
