@@ -5,6 +5,17 @@
   "scripts": {
     "watch": "gulp watch"
   },
+  "browser": {
+    "jquery": "./bower_components/jquery/src/jquery.js"
+  },
+  "browserify-shim": {
+    "jquery": "jquery"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
   "dependencies": {
     "angular": "^1.4.5",
     "body-parser": "~1.4.2",
@@ -17,6 +28,7 @@
     "browser-sync": "^2.8.2",
     "browser-sync-spa": "^1.0.2",
     "browserify": "^11.0.1",
+    "browserify-shim": "^3.8.10",
     "bulkify": "^1.1.1",
     "chai": "^3.2.0",
     "gulp": "^3.9.0",
