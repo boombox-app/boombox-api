@@ -15,7 +15,7 @@ gulp.task('server', ['build'], function () {
     console.log("Nodemon running");
   })
   .on('restart', function () {
-    browsersync.reload({ stream: true });
-    browsersync.notify('Nodemon was restarted!');
+    // browsersync.reload({ stream: true });
+    // browsersync.notify('Nodemon was restarted!');
   });
 });

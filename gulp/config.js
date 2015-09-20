@@ -6,8 +6,8 @@ module.exports = {
   browsersync : {
     proxy: "http://localhost:3000",
     port           : 8080,
-    reloadDelay    : 777,
-    reloadDebounce : 333,
+    // reloadDelay    : 777,
+    // reloadDebounce : 333,
     index          : dest + 'index.html',
     debugInfo      : true,
     notify         : true,
