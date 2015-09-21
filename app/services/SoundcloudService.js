@@ -1,5 +1,4 @@
-var SC = require('node-soundcloud'),
-    Promise = require("bluebird");
+var SC = require('node-soundcloud');
 
 SC.init({
   id: '10b1e7bf6b21e1a2a2971196b918833a',

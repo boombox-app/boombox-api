@@ -1,5 +1,6 @@
 var router = require('express').Router(),
-    SoundCloud = require('./services/SoundcloudService');
+    Promise = require('bluebird'),
+    SoundCloud = Promise.promisifyAll(require('./services/SoundcloudService'));
 
 router.get('/', function (req, res, next) {
   res.sendfile('./_build/index.html');
@@ -23,9 +24,14 @@ router.get('/api/search/tracks', function (req, res, next) {
     }).status(500);
   }
 
+  SoundCloud.getAsync(query.query).then(function (data) {
+    console.log("->L", data);
+  }).catch(function(err){
+    console.log("->E", err);
+  });
+
   res.json(query);
 
-  // res.json(SoundCloud.get(query.query));
 
   /*
   * /api/search/tracks?query=powerless+linkin+park&serviceId=1 // Search SC
