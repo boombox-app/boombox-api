@@ -18,9 +18,11 @@
   },
   "dependencies": {
     "angular": "^1.4.5",
+    "bluebird": "^2.10.0",
     "body-parser": "~1.4.2",
     "express": "~4.5.1",
     "mongoose": "^3.8.35",
+    "node-soundcloud": "0.0.3",
     "ui-router": "0.0.1"
   },
   "devDependencies": {
