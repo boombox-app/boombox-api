@@ -8,12 +8,10 @@ SC.init({
 
 function get(query) {
 
-  SC.get('/search/?q=' + encodeURI(query), function(err, track) {
+  SC.get('/search/?q=' + encodeURI(query) + '&limit=10&offset=0', function(err, track) {
     if ( err ) {
       throw err;
-      return;
     }
-
     return track;
   });
 }
