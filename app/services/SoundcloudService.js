@@ -6,13 +6,13 @@ SC.init({
   uri: 'localhost:3000'
 });
 
-function get(query) {
+function get(query, callback) {
 
   SC.get('/search/?q=' + encodeURI(query) + '&limit=10&offset=0', function(err, track) {
     if ( err ) {
-      throw err;
+      callback(err);
     }
-    return track;
+    callback(null, track);
   });
 }
 

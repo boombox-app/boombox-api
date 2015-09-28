@@ -1,6 +1,7 @@
 var router = require('express').Router(),
     Promise = require('bluebird'),
-    SoundCloud = Promise.promisifyAll(require('./services/SoundcloudService'));
+    SoundCloud = Promise.promisifyAll(require('./services/SoundcloudService')),
+    PopularSongs = Promise.promisifyAll(require('./services/PopularSongsService'));
 
 router.get('/', function (req, res, next) {
   res.sendfile('./_build/index.html');
@@ -12,6 +13,15 @@ router.get('/api', function (req, res, next) {
 
 router.get('/api/popular-songs', function (req, res, next) {
   //Get the most popular songs from DB
+  // console.log("->", PopularSongs.getPopularSongsAsync);
+  PopularSongs.getPopularSongsAsync(null, null)
+    .then(function (data) {
+      res.json(data)
+    })
+    .catch(function (err) {
+      res.json(err).status(400);
+    });
+  // res.json('OK');
 });
 
 router.get('/api/search/tracks', function (req, res, next) {
