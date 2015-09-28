@@ -8,7 +8,7 @@ var config = require('../config').sass;
 
 gulp.task('sass', function () {
   gulp.src(config.src)
-  .pipe(sass({outputStyle: 'compressed'}))
+  .pipe(sass({outputStyle: config.config.output}))
   .on('error', sass.logError)
   .pipe(concat('main.css'))
   .pipe(gulp.dest(config.dest))

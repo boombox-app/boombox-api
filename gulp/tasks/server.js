@@ -8,14 +8,14 @@ gulp.task('server', ['build'], function () {
     script: config.server,
     ext: config.ext,
     env: { 'NODE_ENV': 'development' } ,
-    ignore: ['node_modules/', 'bower_components/', 'logs/', 'packages/*/*/public/assets/lib/', 'packages/*/*/node_modules/', '.DS_Store', '**/.DS_Store', '.bower-*', '**/.bower-*'],
+    ignore: ['node_modules/', 'bower_components/', 'logs/', 'packages/*/*/public/', '.DS_Store', '.bower-*', '**/.bower-*'],
     nodeArgs: ['--debug']
   })
   .on('readable', function() {
     console.log("Nodemon running");
   })
   .on('restart', function () {
-    // browsersync.reload({ stream: true });
-    // browsersync.notify('Nodemon was restarted!');
+    browsersync.reload({ stream: true });
+    browsersync.notify('Nodemon was restarted!');
   });
 });
