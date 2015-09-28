@@ -1,7 +1,7 @@
 <div class="music-box" ng-repeat="song in vm.songs">
   <figure class="thumbnail" ng-class="{'is-playing' : song.status === 'playing'}">
     <a href="#" class="song-link">
-      <img ng-src="{{song.coverArt}}" alt="">
+      <img ng-src="{{song.coverArt}}" alt="{{song.name}}">
       <span class="overlay"></span>
       <!-- 'is-paused' : song.status == 'paused' -->
     </a>

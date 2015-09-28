@@ -13,6 +13,7 @@
   },
   "browserify": {
     "transform": [
+      "require-globify",
       "browserify-shim"
     ]
   },
@@ -20,6 +21,7 @@
     "angular": "^1.4.5",
     "bluebird": "^2.10.0",
     "body-parser": "~1.4.2",
+    "cors": "^2.7.1",
     "express": "~4.5.1",
     "mongoose": "^3.8.35",
     "node-soundcloud": "0.0.3",
@@ -31,7 +33,6 @@
     "browser-sync-spa": "^1.0.2",
     "browserify": "^11.0.1",
     "browserify-shim": "^3.8.10",
-    "bulkify": "^1.1.1",
     "chai": "^3.2.0",
     "gulp": "^3.9.0",
     "gulp-clean": "^0.3.1",
@@ -43,6 +44,7 @@
     "gulp-util": "^3.0.6",
     "gulp-watch": "^4.3.5",
     "require-dir": "^0.3.0",
+    "require-globify": "^1.3.0",
     "run-sequence": "^1.1.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
