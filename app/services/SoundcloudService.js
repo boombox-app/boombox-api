@@ -1,4 +1,5 @@
 var SC = require('node-soundcloud');
+var SoundCloudMapper = require('../data-mappers/SoundCloudMapper');
 
 SC.init({
   id: '10b1e7bf6b21e1a2a2971196b918833a',
@@ -6,16 +7,37 @@ SC.init({
   uri: 'localhost:3000'
 });
 
-function get(query, callback) {
+function searchMusic(query, callback) {
 
-  SC.get('/search/?q=' + encodeURI(query) + '&limit=10&offset=0', function(err, track) {
-    if ( err ) {
-      callback(err);
+  SC.get('/tracks?q=' + encodeURI(query) + '&limit=10&offset=0', function(err, tracks) {
+    if (err) {
+      return callback(err[0] ? err[0].error_message : err);
     }
-    callback(null, track);
+
+    if (!tracks || !tracks.length){
+      return callback({
+        statusCode: 500,
+        status_message : 'error',
+        message : 'Not found!'
+      });
+    }
+
+    return callback(null, tracks.map(SoundCloudMapper.toModel));
+  });
+}
+
+function getMusic (id, callback) {
+
+  SC.get('/tracks/' + id, function (err, track) {
+    if (err) {
+      return callback(err);
+    }
+
+    return callback(null, SoundCloudMapper.toModel(track));
   });
 }
 
 module.exports = {
-  get : get
+  searchMusic : searchMusic,
+  getMusic  : getMusic
 };
