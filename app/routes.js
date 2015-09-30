@@ -13,7 +13,6 @@ router.get('/api', function (req, res, next) {
 
 router.get('/api/popular-songs', function (req, res, next) {
   //Get the most popular songs from DB
-  // console.log("->", PopularSongs.getPopularSongsAsync);
   PopularSongs.getPopularSongsAsync(null, null)
     .then(function (data) {
       res.json(data)
@@ -21,22 +20,22 @@ router.get('/api/popular-songs', function (req, res, next) {
     .catch(function (err) {
       res.json(err).status(400);
     });
-  // res.json('OK');
 });
 
 router.get('/api/search/tracks', function (req, res, next) {
   var query = req.query;
 
   if(!query.query || !query.serviceId) {
-    res.json({
-      status : 'error',
+    return next({
+      statusCode: 500,
+      status_message : 'error',
       message: 'Invalid query!'
-    }).status(500);
+    });
   }
 
-  SoundCloud.getAsync(query.query)
-    .then(function (resolv) {
-      res.json(resolv);
+  SoundCloud.searchMusicAsync(query.query)
+    .then(function (data) {
+      res.json(data);
     }).catch(function(err){
       next(err);
     });
@@ -50,8 +49,14 @@ router.get('/api/search/tracks', function (req, res, next) {
 
 router.get('/api/tracks/:id', function (req, res, next) {
   /*
-  * /api/tracks/123456&serviceId=1
+  * /api/tracks/123456?serviceId=1
   */
+  SoundCloud.getMusicAsync(req.params.id)
+    .then(function (data) {
+      res.json(data);
+    }).catch(function (err) {
+      next(err);
+    });
 });
 
 router.get('/api/search/users', function (req, res, next) {
@@ -67,17 +72,3 @@ module.exports = router;
 
 // Stream
 // https://api.soundcloud.com/tracks/196281077/stream?client_id={code}
-
-// SoundCloud Model Return
-// {
-//   "track": {
-//     "artist": "dj nhald",
-//     "duration": 343,
-//     "id": 196281077,
-//     "permalink": "https://soundcloud.com/dj-nhald/mabel-bumbumbombtechdj-nhald-edit-remix",
-//     "serviceId": 1,
-//     "soundCloudKey": 196281077,
-//     "thumbnail": "https://i1.sndcdn.com/artworks-000110301077-ipfv8x-crop.jpg",
-//     "title": "Mabel - Bumbum(bombtech)dj Nhald Edit Remix"
-//   }
-// }
