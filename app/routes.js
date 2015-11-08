@@ -4,7 +4,7 @@ var router = require('express').Router(),
     PopularSongs = Promise.promisifyAll(require('./services/PopularSongsService'));
 
 router.get('/', function (req, res, next) {
-  res.sendfile('./_build/index.html');
+  res.redirect('/api');
 });
 
 router.get('/api', function (req, res, next) {
@@ -12,7 +12,6 @@ router.get('/api', function (req, res, next) {
 });
 
 router.get('/api/popular-songs', function (req, res, next) {
-  //Get the most popular songs from DB
   PopularSongs.getPopularSongsAsync(null, null)
     .then(function (data) {
       res.json(data)
@@ -39,17 +38,11 @@ router.get('/api/search/tracks', function (req, res, next) {
     }).catch(function(err){
       next(err);
     });
-
-  /*
-  * /api/search/tracks?query=powerless+linkin+park&serviceId=1 // Search SC
-  * /api/search/tracks?query=powerless+linkin+park&serviceId=2 // Search YT
-  * /api/search/tracks?query=powerless+linkin+park&serviceId=3 // Search SF
-  */
 });
 
 router.get('/api/tracks/:id', function (req, res, next) {
   /*
-  * /api/tracks/123456?serviceId=1
+  * /api/tracks/123456
   */
   SoundCloud.getMusicAsync(req.params.id)
     .then(function (data) {
@@ -65,10 +58,10 @@ router.get('/api/search/users', function (req, res, next) {
   */
 });
 
+router.get('/api/search/users/:id', function (req, res, next) {
+  /*
+  * /api/search/users/123456
+  */
+});
+
 module.exports = router;
-
-//SoundCloud
-// https://api-v2.soundcloud.com/search/tracks?q=powerless%20linkin%20park&facet=genre&limit=10&offset=0&client_id={code}
-
-// Stream
-// https://api.soundcloud.com/tracks/196281077/stream?client_id={code}

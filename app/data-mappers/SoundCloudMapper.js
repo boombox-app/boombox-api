@@ -1,5 +1,7 @@
-var debug = require('debug')('boombox:mapper:soundcloud');
-var Model = require('./../models/musicModel');
+'use strict';
+
+let debug = require('debug')('boombox:mapper:soundcloud');
+
 const SERVICE_ID = 1;
 
 function toModel (raw) {
@@ -8,8 +10,8 @@ function toModel (raw) {
     serviceId: SERVICE_ID,
     title: raw.title,
     artist: raw.user.username,
-    duration: (raw.duration / 1000),
-    thumbnail: raw.artwork_url,
+    duration: raw.duration,
+    thumbnail: raw.artwork_url || raw.waveform_url,
     streamUrl: raw.stream_url
   };
 }
